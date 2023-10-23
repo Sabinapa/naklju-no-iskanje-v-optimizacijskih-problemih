@@ -1,7 +1,88 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+fun runOptimization(problem: Problem, maxFEs: Int) {
+    val solution = problem.randomSolutionGenerator()
+    val optimum = problem.evaluate(DoubleArray(problem.numberDimension) { 0.0 })
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+    println("Optimal value: $optimum")
+    println("Solution: $solution")
+
+    val algorithm = Algorithm(problem)
+    algorithm.run(maxFEs)
+}
+
+fun main(args: Array<String>) {
+
+    /*
+     val ackley = Ackley(dimensions, maxFEs) // 2 dimenziji, maksimalno 3000 ovrednotenj
+            val solution = ackley.randomSolutionGenerator()
+            val optimum = ackley.evaluate(DoubleArray(dimensions) { 0.0 })
+            println(optimum)
+            println(solution)
+
+            val algorithm = Algorithm(ackley)
+            algorithm.run(maxFEs) //  maxFes = 3000
+     */
+
+    if (args.size < 4) {
+        println("Usage: java rndSearch <problemType> <dimension> <maxFEs>")
+        return
+    }
+
+    val problemType = args[1].toInt()
+    val dimensions = args[2].toInt()
+    val maxFEs = args[3].toInt()
+
+    println("Naloga 1: naključno iskanje v optimizacijskih problemih\n")
+
+    when(problemType)
+    {
+        1->
+        {
+            println("Sphere")
+            val sphere = Sphere(dimensions, maxFEs)
+            runOptimization(sphere, maxFEs)
+        }
+        2->
+        {
+            println("Ackley")
+            val ackley = Ackley(dimensions, maxFEs)
+            runOptimization(ackley, maxFEs)
+        }
+        3->
+        {
+            println("Schwefel26")
+            val schwefel26 = Schwefel26(dimensions, maxFEs)
+            runOptimization(schwefel26, maxFEs)
+        }
+        4->
+        {
+            println("Rosenbrock")
+            val rosenbrock = Rosenbrock(dimensions, maxFEs)
+            runOptimization(rosenbrock, maxFEs)
+        }
+        5->
+        {
+            println("Bukin")
+            val bukin = Bukin(dimensions, maxFEs)
+            runOptimization(bukin, maxFEs)
+        }
+        6->
+        {
+            println("CarromTable")
+            val carromTable = CarromTable(dimensions, maxFEs)
+            runOptimization(carromTable, maxFEs)
+        }
+        7->
+        {
+            println("Easom")
+            val easom = Easom(dimensions, maxFEs)
+            runOptimization(easom, maxFEs)
+        }
+        8->
+        {
+            println("Trid")
+            val trid = Trid(dimensions, maxFEs)
+            runOptimization(trid, maxFEs)
+        }
+    }
+
 }
