@@ -1,4 +1,4 @@
-fun runOptimization(problem: Problem, maxFEs: Int) {
+fun runProblem(problem: Problem, maxFEs: Int) {
     val solution = problem.randomSolutionGenerator()
     val optimum = problem.evaluate(DoubleArray(problem.numberDimension) { 0.0 })
 
@@ -33,55 +33,46 @@ fun main(args: Array<String>) {
 
     println("Naloga 1: naključno iskanje v optimizacijskih problemih\n")
 
-    when(problemType)
-    {
-        1->
-        {
+    when (problemType) {
+        1 -> {
             println("Sphere")
             val sphere = Sphere(dimensions, maxFEs)
-            runOptimization(sphere, maxFEs)
+            runProblem(sphere, maxFEs)
         }
-        2->
-        {
+        2 -> {
             println("Ackley")
             val ackley = Ackley(dimensions, maxFEs)
-            runOptimization(ackley, maxFEs)
+            runProblem(ackley, maxFEs)
         }
-        3->
-        {
+        3 -> {
             println("Schwefel26")
             val schwefel26 = Schwefel26(dimensions, maxFEs)
-            runOptimization(schwefel26, maxFEs)
+            runProblem(schwefel26, maxFEs)
         }
-        4->
-        {
+        4 -> {
             println("Rosenbrock")
             val rosenbrock = Rosenbrock(dimensions, maxFEs)
-            runOptimization(rosenbrock, maxFEs)
+            runProblem(rosenbrock, maxFEs)
         }
-        5->
-        {
+        5 -> {
             println("Bukin")
             val bukin = Bukin(dimensions, maxFEs)
-            runOptimization(bukin, maxFEs)
+            runProblem(bukin, maxFEs)
         }
-        6->
-        {
+        6 -> {
             println("CarromTable")
             val carromTable = CarromTable(dimensions, maxFEs)
-            runOptimization(carromTable, maxFEs)
+            runProblem(carromTable, maxFEs)
         }
-        7->
-        {
+        7 -> {
             println("Easom")
             val easom = Easom(dimensions, maxFEs)
-            runOptimization(easom, maxFEs)
+            runProblem(easom, maxFEs)
         }
-        8->
-        {
+        8 -> {
             println("Trid")
             val trid = Trid(dimensions, maxFEs)
-            runOptimization(trid, maxFEs)
+            runProblem(trid, maxFEs)
         }
     }
 

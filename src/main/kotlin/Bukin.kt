@@ -12,7 +12,6 @@ class Bukin(numberDimension: Int, maxFEs: Int) : Problem("Bukin", numberDimensio
         upperLimit = upperLimitValue
 
     }
-
     override fun evaluate(x: DoubleArray): Double {
         currentFes++
         assert(currentFes <= maxFEs)

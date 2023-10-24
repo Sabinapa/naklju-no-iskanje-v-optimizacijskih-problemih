@@ -1,16 +1,12 @@
-import kotlin.math.abs
-import kotlin.math.cos
-import kotlin.math.sin
+import kotlin.math.*
 
 class CarromTable(numberDimension: Int, maxFEs: Int) : Problem("CarromTable", numberDimension, maxFEs) {
-
     init {
-        require(numberDimension == 2) { "CarromTable only works with 2 dimensions" }
-        val lowerLimitValue = doubleArrayOf(-10.0, -10.0)
-        val upperLimitValue = doubleArrayOf(10.0, 10.0)
+        val lowerLimitValue = -10.0
+        val upperLimitValue = 10.0
 
-        lowerLimit = lowerLimitValue
-        upperLimit = upperLimitValue
+        lowerLimit.fill(lowerLimitValue)
+        upperLimit.fill(upperLimitValue)
     }
 
     override fun evaluate(x: DoubleArray): Double {
@@ -20,9 +16,11 @@ class CarromTable(numberDimension: Int, maxFEs: Int) : Problem("CarromTable", nu
         val x1 = x[0]
         val x2 = x[1]
 
-        val term1 = 100 - (x1 * x1 + x2 * x2)
-        val term2 = 0.5 * (cos(sin(abs(x1 * x1 - x2 * x2))) - 0.5)
+        val term1 = 1 - (sqrt(x1 * x1 + x2 * x2) / Math.PI)
+        val term2 = exp(2.0 * abs(term1))
+        val term3 = cos(x1) * cos(x1)
+        val term4 = cos(x2) * cos(x2)
 
-        return term1 - term2
+        return -(1.0 / 30.0) * term2 * term3 * term4
     }
 }

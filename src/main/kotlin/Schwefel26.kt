@@ -1,3 +1,7 @@
+import kotlin.math.abs
+import kotlin.math.sin
+import kotlin.math.sqrt
+
 class Schwefel26(numberDimension: Int, maxFEs: Int): Problem("Schwefel26", numberDimension, maxFEs)
 {
     init {
@@ -12,8 +16,11 @@ class Schwefel26(numberDimension: Int, maxFEs: Int): Problem("Schwefel26", numbe
         currentFes++
         assert(currentFes <= maxFEs)
 
-        val sum = x.sumByDouble { Math.abs(it) }
+        var sum = 0.0
+        for (i in 0 until numberDimension) {
+            sum += x[i] * sin(sqrt(abs(x[i])))
+        }
 
-        return 420.968746 * numberDimension - sum
+        return 418.9829 * numberDimension - sum
     }
 }

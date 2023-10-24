@@ -1,4 +1,7 @@
 import kotlin.math.PI
+import kotlin.math.cos
+import kotlin.math.exp
+import kotlin.math.sqrt
 
 class Ackley (numberDimension: Int, maxFEs: Int): Problem("Ackley", numberDimension, maxFEs) {
 
@@ -9,7 +12,6 @@ class Ackley (numberDimension: Int, maxFEs: Int): Problem("Ackley", numberDimens
         lowerLimit.fill(lowerLimitValue)
         upperLimit.fill(upperLimitValue)
     }
-
     override fun evaluate(x: DoubleArray): Double {
         currentFes++
         assert(currentFes <= maxFEs)
@@ -20,13 +22,11 @@ class Ackley (numberDimension: Int, maxFEs: Int): Problem("Ackley", numberDimens
         val c = 2 * PI
 
         val sum1 = x.sumByDouble { it * it } // vsoto kvadrato
-        val sum2 = x.sumByDouble { Math.cos(c * it) } //vsoto kosinusov
+        val sum2 = x.sumByDouble { cos(c * it) } //vsoto kosinusov
 
-        val term1 = -a * Math.exp(-b * Math.sqrt(sum1 / numberDimension))
-        val term2 = -Math.exp(sum2 / numberDimension)
+        val term1 = -a * exp(-b * sqrt(sum1 / numberDimension))
+        val term2 = -exp(sum2 / numberDimension)
 
-        return term1 + term2 + a + Math.exp(1.0)
+        return term1 + term2 + a + exp(1.0)
     }
-
-
 }
