@@ -19,5 +19,33 @@ abstract class Problem (
         return Solution(x, evaluate(x))
     }
 
+    // preveri če solution v mejah zgornje in spodnje meje
+    fun isFeasible(solution: Solution): Boolean
+    {
+        for (i in 0 until numberDimension) {
+            if (solution.x[i] < lowerLimit[i] || solution.x[i] > upperLimit[i]) {
+                return false
+            }
+        }
+        return true
+    }
+
+    // če ni v mejah zgornje in spodnje meje, ga nastavi na mejo
+    // če je pod spodnjo mejo nastavi na spodnjo mejo
+    // če je nad zgornjo mejo nastavi na zgornjo mejo
+    fun setFeasible(solution: Solution)
+    {
+        for (i in 0 until numberDimension)
+        {
+            if (solution.x[i] < lowerLimit[i])
+            {
+                solution.x[i] = lowerLimit[i]
+            }
+            else if (solution.x[i] > upperLimit[i])
+            {
+                solution.x[i] = upperLimit[i]
+            }
+        }
+    }
 
 }

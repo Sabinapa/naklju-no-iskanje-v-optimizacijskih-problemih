@@ -22,6 +22,11 @@ fun main(args: Array<String>) {
             algorithm.run(maxFEs) //  maxFes = 3000
      */
 
+
+    val problem = Ackley(2, 3000)
+    val hillClimbing = HillClimbing(problem, stepSize = 0.2)
+    hillClimbing.run(1000)
+
     if (args.size < 4) {
         println("Usage: java rndSearch <problemType> <dimension> <maxFEs>")
         return
