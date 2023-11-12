@@ -1,84 +1,41 @@
-fun runProblem(problem: Problem, maxFEs: Int) {
-    val solution = problem.randomSolutionGenerator()
-    val optimum = problem.evaluate(DoubleArray(problem.numberDimension) { 0.0 })
+fun runProblem(problem: Problem, maxFEs: Int, numRuns: Int): Triple<Solution, Double, Double> {
+    val dimensions = problem.numberDimension
+    val hillClimbing = HillClimbing(problem, stepSize = 0.1)
+    val statistics = Statistics(hillClimbing, numRuns)
 
-    println("Optimal value: $optimum")
-    println("Solution: $solution")
+    val (minFitness, avgFitness, stdDev) = statistics.runStatistics(problem)
 
-    val algorithm = MyAlgorithm(problem)
-    algorithm.run(maxFEs)
+    println("${problem.name} min: $minFitness avg: $avgFitness std: $stdDev")
+    return Triple(minFitness, avgFitness, stdDev)
 }
 
-fun main(args: Array<String>) {
+fun main() {
+    val numRuns = 100
+    val dimensions = 2  // You can change this to any desired number of dimensions
+    val maxFEs = 10000
 
-    /*
-     val ackley = Ackley(dimensions, maxFEs) // 2 dimenziji, maksimalno 3000 ovrednotenj
-            val solution = ackley.randomSolutionGenerator()
-            val optimum = ackley.evaluate(DoubleArray(dimensions) { 0.0 })
-            println(optimum)
-            println(solution)
-
-            val algorithm = Algorithm(ackley)
-            algorithm.run(maxFEs) //  maxFes = 3000
-     */
-
-
-    val problem = Ackley(2, 3000)
-    val hillClimbing = HillClimbing(problem, stepSize = 0.2)
-    hillClimbing.run(1000)
-
-    if (args.size < 4) {
-        println("Usage: java rndSearch <problemType> <dimension> <maxFEs>")
-        return
-    }
-
-    val problemType = args[1].toInt()
-    val dimensions = args[2].toInt()
-    val maxFEs = args[3].toInt()
+    // Define problem names using an enum or constants
+    val problemNames = arrayOf("Sphere", "Ackley", "Schwefel26", "Rosenbrock", "Bukin", "CarromTable", "Easom", "Trid")
 
     println("Naloga 1: naključno iskanje v optimizacijskih problemih\n")
 
-    when (problemType) {
-        1 -> {
-            println("Sphere")
-            val sphere = Sphere(dimensions, maxFEs)
-            runProblem(sphere, maxFEs)
-        }
-        2 -> {
-            println("Ackley")
-            val ackley = Ackley(dimensions, maxFEs)
-            runProblem(ackley, maxFEs)
-        }
-        3 -> {
-            println("Schwefel26")
-            val schwefel26 = Schwefel26(dimensions, maxFEs)
-            runProblem(schwefel26, maxFEs)
-        }
-        4 -> {
-            println("Rosenbrock")
-            val rosenbrock = Rosenbrock(dimensions, maxFEs)
-            runProblem(rosenbrock, maxFEs)
-        }
-        5 -> {
-            println("Bukin")
-            val bukin = Bukin(maxFEs)
-            runProblem(bukin, maxFEs)
-        }
-        6 -> {
-            println("CarromTable")
-            val carromTable = CarromTable(dimensions, maxFEs)
-            runProblem(carromTable, maxFEs)
-        }
-        7 -> {
-            println("Easom")
-            val easom = Easom(dimensions, maxFEs)
-            runProblem(easom, maxFEs)
-        }
-        8 -> {
-            println("Trid")
-            val trid = Trid(dimensions, maxFEs)
-            runProblem(trid, maxFEs)
-        }
-    }
+    for (problemType in 1..problemNames.size) {
+        val problemName = problemNames[problemType - 1]
+        println(problemName)
 
+        val problem = when (problemType) {
+            1 -> Sphere(dimensions, maxFEs)
+            2 -> Ackley(dimensions, maxFEs)
+            3 -> Schwefel26(dimensions, maxFEs)
+            4 -> Rosenbrock(dimensions, maxFEs)
+            5 -> Bukin(maxFEs)
+            6 -> CarromTable(dimensions, maxFEs)
+            7 -> Easom(dimensions, maxFEs)
+            8 -> Trid(dimensions, maxFEs)
+            else -> throw IllegalArgumentException("Invalid problem type: $problemType")
+        }
+
+        runProblem(problem, maxFEs, numRuns)
+        println()
+    }
 }
