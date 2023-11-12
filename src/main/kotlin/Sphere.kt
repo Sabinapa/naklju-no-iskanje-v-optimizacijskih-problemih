@@ -3,7 +3,7 @@ class Sphere(numberDimension: Int, maxFEs: Int): Problem("Sphere", numberDimensi
         val lowerLimitValue = -100.0
         val upperLimitValue = 100.0
 
-        lowerLimit.fill(lowerLimitValue)
+        lowerLimit.fill(lowerLimitValue) //spodnja meja za vse dimenzije problema
         upperLimit.fill(upperLimitValue)
     }
 

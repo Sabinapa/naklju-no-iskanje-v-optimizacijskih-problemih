@@ -5,7 +5,7 @@ fun runProblem(problem: Problem, maxFEs: Int) {
     println("Optimal value: $optimum")
     println("Solution: $solution")
 
-    val algorithm = Algorithm(problem)
+    val algorithm = MyAlgorithm(problem)
     algorithm.run(maxFEs)
 }
 
@@ -56,7 +56,7 @@ fun main(args: Array<String>) {
         }
         5 -> {
             println("Bukin")
-            val bukin = Bukin(dimensions, maxFEs)
+            val bukin = Bukin(maxFEs)
             runProblem(bukin, maxFEs)
         }
         6 -> {

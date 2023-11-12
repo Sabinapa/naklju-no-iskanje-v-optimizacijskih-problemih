@@ -1,10 +1,14 @@
-class Algorithm(private val problem: Problem) {
-    private var bestSolution: Solution? = null
 
-    fun run(maxIterations: Int) {
+abstract class Algorithm(val problem: Problem) { //abstract
+    var bestSolution: Solution? = null
+
+    abstract fun run(maxIterations: Int) : Solution?
+    /*
+    { //abstract prejme problem + vrne najbojso resitev
         var iterations = 0
 
-        while (shouldContinueOptimization(iterations, maxIterations)) {
+        while (iterations < maxIterations) {
+            //problem.currentFes < problem.maxFEs && iterations < maxIterations
             val solution = problem.randomSolutionGenerator()
             val fitness = problem.evaluate(solution.x)
             iterations++
@@ -13,20 +17,19 @@ class Algorithm(private val problem: Problem) {
         }
 
         printResult()
+        //return bestSolution!!
     }
+     */
 
-    private fun shouldContinueOptimization(iterations: Int, maxIterations: Int): Boolean {
-        return problem.currentFes < problem.maxFEs && iterations < maxIterations
-    }
 
-    private fun updateBestSolution(solution: Solution, fitness: Double, iterations: Int) {
+    fun updateBestSolution(solution: Solution, fitness: Double, iterations: Int) {
         if (bestSolution == null || fitness < bestSolution!!.fitness) {
             bestSolution = Solution(solution.x.copyOf(), fitness)
             println("$iterations. ${bestSolution.toString()}")
         }
     }
 
-    private fun printResult() {
-        println("Rezultat = ${bestSolution.toString()}")
+    fun printResult() {
+        println("Result = ${bestSolution?.toString() ?: "No solution found"}")
     }
 }

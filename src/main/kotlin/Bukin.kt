@@ -1,10 +1,9 @@
 import kotlin.math.abs
 import kotlin.math.sqrt
 
-class Bukin(numberDimension: Int, maxFEs: Int) : Problem("Bukin", numberDimension, maxFEs) {
+class Bukin(maxFEs: Int) : Problem("Bukin", 2, maxFEs) {
 
     init {
-        require(numberDimension == 2) { "Bukin only works with 2 dimensions" }
         val lowerLimitValue = doubleArrayOf(-15.0, -3.0)
         val upperLimitValue = doubleArrayOf(-5.0, 3.0)
 
