@@ -1,5 +1,5 @@
 fun runProblem(problem: Problem, maxFEs: Int, numRuns: Int): Triple<Solution, Double, Double> {
-    val dimensions = problem.numberDimension
+    //val dimensions = problem.numberDimension
     val hillClimbing = HillClimbing(problem, stepSize = 0.1)
     val statistics = Statistics(hillClimbing, numRuns)
 
@@ -11,13 +11,13 @@ fun runProblem(problem: Problem, maxFEs: Int, numRuns: Int): Triple<Solution, Do
 
 fun main() {
     val numRuns = 100
-    val dimensions = 2  // You can change this to any desired number of dimensions
+    val dimensions = 2
     val maxFEs = 10000
 
     // Define problem names using an enum or constants
     val problemNames = arrayOf("Sphere", "Ackley", "Schwefel26", "Rosenbrock", "Bukin", "CarromTable", "Easom", "Trid")
 
-    println("Naloga 1: naključno iskanje v optimizacijskih problemih\n")
+    println("Naloga 2: naključno iskanje v optimizacijskih problemih\n")
 
     for (problemType in 1..problemNames.size) {
         val problemName = problemNames[problemType - 1]
