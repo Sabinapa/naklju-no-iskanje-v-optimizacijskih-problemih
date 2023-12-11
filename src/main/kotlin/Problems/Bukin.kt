@@ -1,7 +1,10 @@
+package Problems
+
+import Problem
 import kotlin.math.abs
 import kotlin.math.sqrt
 
-class Bukin(maxFEs: Int) : Problem("Bukin", 2, maxFEs) {
+class Bukin(maxFEs: Int) : Problem("Problems.Bukin", 2, maxFEs) {
 
     init {
         val lowerLimitValue = doubleArrayOf(-15.0, -3.0)

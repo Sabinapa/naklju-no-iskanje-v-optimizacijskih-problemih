@@ -1,6 +1,9 @@
+package Problems
+
+import Problem
 import kotlin.math.*
 
-class CarromTable(numberDimension: Int, maxFEs: Int) : Problem("CarromTable", numberDimension, maxFEs) {
+class CarromTable(numberDimension: Int, maxFEs: Int) : Problem("Problems.CarromTable", numberDimension, maxFEs) {
     init {
         val lowerLimitValue = -10.0
         val upperLimitValue = 10.0

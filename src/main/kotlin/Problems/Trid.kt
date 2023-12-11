@@ -1,4 +1,8 @@
-class Trid(numberDimension: Int, maxFEs: Int) : Problem("Trid", numberDimension, maxFEs) {
+package Problems
+
+import Problem
+
+class Trid(numberDimension: Int, maxFEs: Int) : Problem("Problems.Trid", numberDimension, maxFEs) {
 
     init {
         val lowerLimitValue = DoubleArray(numberDimension) { -numberDimension.toDouble() * numberDimension.toDouble() }

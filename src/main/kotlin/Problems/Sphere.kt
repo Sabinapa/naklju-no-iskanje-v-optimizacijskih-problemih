@@ -1,4 +1,8 @@
-class Sphere(numberDimension: Int, maxFEs: Int): Problem("Sphere", numberDimension, maxFEs) {
+package Problems
+
+import Problem
+
+class Sphere(numberDimension: Int, maxFEs: Int): Problem("Problems.Sphere", numberDimension, maxFEs) {
     init {
         val lowerLimitValue = -100.0
         val upperLimitValue = 100.0

@@ -1,8 +1,11 @@
+package Problems
+
+import Problem
 import kotlin.math.abs
 import kotlin.math.sin
 import kotlin.math.sqrt
 
-class Schwefel26(numberDimension: Int, maxFEs: Int): Problem("Schwefel26", numberDimension, maxFEs)
+class Schwefel26(numberDimension: Int, maxFEs: Int): Problem("Problems.Schwefel26", numberDimension, maxFEs)
 {
     init {
         val lowerLimitValue = -500.0

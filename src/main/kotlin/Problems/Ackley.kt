@@ -1,9 +1,12 @@
+package Problems
+
+import Problem
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.exp
 import kotlin.math.sqrt
 
-class Ackley (numberDimension: Int, maxFEs: Int): Problem("Ackley", numberDimension, maxFEs) {
+class Ackley (numberDimension: Int, maxFEs: Int): Problem("Problems.Ackley", numberDimension, maxFEs) {
 
     init {
         val lowerLimitValue = -32.768

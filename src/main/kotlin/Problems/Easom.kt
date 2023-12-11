@@ -1,8 +1,11 @@
+package Problems
+
+import Problem
 import kotlin.math.cos
 import kotlin.math.exp
 import kotlin.math.pow
 
-class Easom(numberDimension: Int, maxFEs: Int) : Problem("Easom", numberDimension, maxFEs) {
+class Easom(numberDimension: Int, maxFEs: Int) : Problem("Problems.Easom", numberDimension, maxFEs) {
 
     init {
         val lowerLimitValue = -100.0

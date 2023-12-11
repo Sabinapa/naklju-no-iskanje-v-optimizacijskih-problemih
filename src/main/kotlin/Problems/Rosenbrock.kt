@@ -1,4 +1,8 @@
-class Rosenbrock (numberDimension: Int, maxFEs: Int): Problem("Rosenbrock", numberDimension, maxFEs) {
+package Problems
+
+import Problem
+
+class Rosenbrock (numberDimension: Int, maxFEs: Int): Problem("Problems.Rosenbrock", numberDimension, maxFEs) {
 
     init {
         val lowerLimitValue = -5.0
