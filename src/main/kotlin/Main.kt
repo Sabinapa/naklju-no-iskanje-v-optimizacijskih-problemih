@@ -1,4 +1,4 @@
-fun runProblem(problem: Problem, maxFEs: Int, numRuns: Int): Triple<Solution, Double, Double> {
+fun runProblem(problem: Problem, numRuns: Int): Triple<Solution, Double, Double> {
     //val dimensions = problem.numberDimension
     val hillClimbing = HillClimbing(problem, stepSize = 0.1)
     val statistics = Statistics(hillClimbing, numRuns)
@@ -10,7 +10,6 @@ fun runProblem(problem: Problem, maxFEs: Int, numRuns: Int): Triple<Solution, Do
 }
 
 fun main() {
-    val numRuns = 100
     val dimensions = 2
     val maxFEs = 10000
 
@@ -35,7 +34,7 @@ fun main() {
             else -> throw IllegalArgumentException("Invalid problem type: $problemType")
         }
 
-        runProblem(problem, maxFEs, numRuns)
+        runProblem(problem, maxFEs)
         println()
     }
 }

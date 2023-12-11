@@ -31,7 +31,7 @@ class HillClimbing (problem: Problem, private val stepSize: Double = 0.1, privat
 
             //če fitnes nove rešitve boljsi od fitnesa trenutne se podobi
             if (newSolution.fitness < begginer.fitness) {
-                //updateBestSolution(newSolution.fitness)
+                updateBestSolution(newSolution, newSolution.fitness)
             }
 
             // Izračunaj novo bližino do optimuma

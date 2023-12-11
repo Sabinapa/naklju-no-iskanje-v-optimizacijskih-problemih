@@ -6,9 +6,8 @@ class MyAlgorithm(problem: Problem) : Algorithm(problem) {
         while (iterations < maxIterations) {
             val solution = problem.randomSolutionGenerator()
             val fitness = problem.evaluate(solution.x)
-            iterations++
 
-            updateBestSolution(solution,fitness, iterations)
+            updateBestSolution(solution,fitness)
         }
 
         printResult()
