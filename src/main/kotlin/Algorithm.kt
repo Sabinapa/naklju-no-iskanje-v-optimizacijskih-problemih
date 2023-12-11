@@ -4,10 +4,11 @@ abstract class Algorithm(val problem: Problem) { //abstract
 
     abstract fun run(maxIterations: Int) : Solution?
 
-    fun updateBestSolution(solution: Solution, fitness: Double, iterations: Int) {
+
+    fun updateBestSolution(solution: Solution, fitness: Double) {
         if (bestSolution == null || fitness < bestSolution!!.fitness) {
             bestSolution = Solution(solution.x.copyOf(), fitness)
-            println("$iterations. ${bestSolution.toString()}")
+            //println("$iterations. ${bestSolution.toString()}")
         }
     }
 

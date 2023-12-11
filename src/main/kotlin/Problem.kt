@@ -9,6 +9,10 @@ abstract class Problem (
 
     abstract fun evaluate(x: DoubleArray): Double
 
+    fun evaluate(solution: Solution) {
+        solution.fitness = evaluate(solution.x)
+    }
+
     fun randomSolutionGenerator(): Solution { //naključno generiranje kromosomov/kandidatov
         val x = DoubleArray(numberDimension)
 

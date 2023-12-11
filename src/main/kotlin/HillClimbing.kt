@@ -1,26 +1,28 @@
 class HillClimbing (problem: Problem, private val stepSize: Double = 0.1, private val targetFitness: Double = 0.001) : Algorithm(problem) {
 
     override fun run(maxIterations: Int): Solution? {
-        var iterations = 0
+        //var iterations = 0
         var proximityToOptimum = Double.MAX_VALUE
         problem.currentFes = 0
 
-        while (iterations < maxIterations && proximityToOptimum > targetFitness)
+        //generira nakljucne zacetne resitve
+        val begginer = problem.randomSolutionGenerator() //zacetni posameznik
+        problem.evaluate(begginer)
+        problem.currentFes++
+
+
+
+        while (problem.currentFes < maxIterations && proximityToOptimum > targetFitness)
         {
-            //generira nakljucne zacetne resitve
-            val zacetniPosameznik = problem.randomSolutionGenerator()
-            var currentFitness = problem.evaluate(zacetniPosameznik.x)
 
             // Preverjanje, ali je naključno generirana rešitev veljavna
-            if (!problem.isFeasible(zacetniPosameznik)) {
-                problem.setFeasible(zacetniPosameznik)
+            if (!problem.isFeasible(begginer)) {
+                problem.setFeasible(begginer)
             }
 
-            val newSolution = Generiranjesosedov(zacetniPosameznik)
+            val newSolution = generateNeighbors(begginer)
+            problem.currentFes+=problem.numberDimension
             //oceni nova rešitev
-            val newFitness = problem.evaluate(newSolution.x)
-
-            iterations++
 
             //preveri veljavnost nove resitve
             if (!problem.isFeasible(newSolution)) {
@@ -28,8 +30,8 @@ class HillClimbing (problem: Problem, private val stepSize: Double = 0.1, privat
             }
 
             //če fitnes nove rešitve boljsi od fitnesa trenutne se podobi
-            if (newFitness < currentFitness) {
-                updateBestSolution(newSolution, newFitness, iterations)
+            if (newSolution.fitness < begginer.fitness) {
+                //updateBestSolution(newSolution.fitness)
             }
 
             // Izračunaj novo bližino do optimuma
@@ -43,7 +45,7 @@ class HillClimbing (problem: Problem, private val stepSize: Double = 0.1, privat
 
     //Obvezni del (zahteva 2n sosedov): Za vsako dimenzijo naredite dva koraka, enega navzgor (+) in enega navzdol (-), s čimer boste ustvarili 2n sosedov.
 
-    private fun Generiranjesosedov(solution: Solution): Solution {
+    private fun generateNeighbors(solution: Solution): Solution {
         //val newSolution = Solution(solution.x.copyOf(), solution.fitness)
         val neighbors = mutableListOf<Solution>()
 
