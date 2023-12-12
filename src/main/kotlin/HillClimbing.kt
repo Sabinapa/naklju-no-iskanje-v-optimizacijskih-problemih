@@ -1,7 +1,10 @@
-class HillClimbing (problem: Problem, private val stepSize: Double = 0.1, private val targetFitness: Double = 0.001) : Algorithm(problem) {
 
-    override fun run(maxIterations: Int): Solution? {
-        //var iterations = 0
+class HillClimbing<T: Solution>(private val problem: Problem, private val stepSize: Double = 0.1, private val targetFitness: Double = 0.001) : Algorithm<T>() {
+
+
+    override fun run(): T
+    {
+        var maxIterations = 10000
         var proximityToOptimum = Double.MAX_VALUE
         problem.currentFes = 0
 
@@ -9,8 +12,6 @@ class HillClimbing (problem: Problem, private val stepSize: Double = 0.1, privat
         val begginer = problem.randomSolutionGenerator() //zacetni posameznik
         problem.evaluate(begginer)
         problem.currentFes++
-
-
 
         while (problem.currentFes < maxIterations && proximityToOptimum > targetFitness)
         {
@@ -30,8 +31,9 @@ class HillClimbing (problem: Problem, private val stepSize: Double = 0.1, privat
             }
 
             //če fitnes nove rešitve boljsi od fitnesa trenutne se podobi
-            if (newSolution.fitness < begginer.fitness) {
-                updateBestSolution(newSolution, newSolution.fitness)
+            if (newSolution.fitness < begginer.fitness)
+            {
+                //updateBestSolution(newSolution, newSolution.fitness)
             }
 
             // Izračunaj novo bližino do optimuma
@@ -40,7 +42,7 @@ class HillClimbing (problem: Problem, private val stepSize: Double = 0.1, privat
 
         //printResult()
 
-        return bestSolution
+        return bestSolution as T
     }
 
     //Obvezni del (zahteva 2n sosedov): Za vsako dimenzijo naredite dva koraka, enega navzgor (+) in enega navzdol (-), s čimer boste ustvarili 2n sosedov.
@@ -71,4 +73,5 @@ class HillClimbing (problem: Problem, private val stepSize: Double = 0.1, privat
         return neighbors[bestNeighborIndex]
 
     }
+
 }

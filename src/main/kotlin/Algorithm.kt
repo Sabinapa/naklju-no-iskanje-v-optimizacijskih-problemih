@@ -1,14 +1,20 @@
 
-abstract class Algorithm(val problem: Problem) { //abstract
+open class Algorithm<T> {
     var bestSolution: Solution? = null
 
-    abstract fun run(maxIterations: Int) : Solution?
+    open fun run() : T = Unit as T
 
+    //abstract fun run1(maxIterations: Int) : U
+
+    /*
     fun updateBestSolution(solution: Solution, fitness: Double) {
         if (bestSolution == null || fitness < bestSolution!!.fitness) {
             bestSolution = Solution(solution.x.copyOf(), fitness)
         }
     }
+
+     */
+
 
     fun printResult() {
         println("Result = ${bestSolution?.toString() ?: "No solution found"}")
