@@ -1,4 +1,4 @@
-class Statistics<T: ParticleSolution?>(private val algorithm: Algorithm<T>, private val numRuns: Int = 20) {
+class Statistics<T: ParticleSolution?>(private val algorithm: Algorithm<T>, private val numRuns: Int = 50) {
 
     fun runStatistics(problem: Problem): Triple<T, Double, Double> {
         var bestSolution: T? = null
@@ -14,6 +14,7 @@ class Statistics<T: ParticleSolution?>(private val algorithm: Algorithm<T>, priv
             if (bestSolution == null || fitness < bestSolution!!.fitness) {
                 bestSolution = result
             }
+            println(bestSolution?.fitness)
 
             // Update sums for calculating average and standard deviation
             sumFitness += fitness
@@ -26,7 +27,7 @@ class Statistics<T: ParticleSolution?>(private val algorithm: Algorithm<T>, priv
         val standardDeviation = calculateStandardDeviation(sumFitness, sumSquaredFitness, numRuns)
 
         // Print the run count
-        println("Run $runCount: Best Fitness - ${bestSolution?.fitness}")
+        //println("Run $runCount: Best Fitness - ${bestSolution?.fitness}")
 
         // najboljsa resitev med vsemi ponovitvami, povprecna veednost, standardni odklon
         return Triple(bestSolution!!, averageFitness, standardDeviation)
