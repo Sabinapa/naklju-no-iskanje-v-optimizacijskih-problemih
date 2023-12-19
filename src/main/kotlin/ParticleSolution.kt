@@ -1,5 +1,3 @@
-
-
 class ParticleSolution(x: DoubleArray, fitness: Double, var velocity: DoubleArray,var bestPosition: DoubleArray) : Solution(x, fitness)
 {
     override fun toString(): String {

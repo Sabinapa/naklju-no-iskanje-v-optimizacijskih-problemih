@@ -1,4 +1,5 @@
-class MyAlgorithm(problem: Problem) : Algorithm(problem) {
+
+/*class MyAlgorithm(problem: Problem) : Algorithm(problem) {
 
     override fun run(maxIterations: Int): Solution? {
         var iterations = 0
@@ -16,3 +17,5 @@ class MyAlgorithm(problem: Problem) : Algorithm(problem) {
         return bestSolution
     }
 }
+
+ */
