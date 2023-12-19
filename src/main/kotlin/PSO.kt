@@ -84,8 +84,6 @@ class PSO(private val problem: Problem) : Algorithm<ParticleSolution?>()
 
                 }
             }
-            bestSolution = globalBestSolution
-
         }
         return globalBestSolution
     }

@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
 
 
     val problem = Ackley(2, 3000)
-    val hillClimbing = HillClimbing(problem, stepSize = 0.2)
+    val hillClimbing = HillClimbing.HillClimbing(problem, stepSize = 0.2)
     hillClimbing.run(1000)
 
 

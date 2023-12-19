@@ -1,3 +1,8 @@
+package HillClimbing
+
+import Algorithm
+import Problem
+import Solution
 
 class HillClimbing<T: Solution>(private val problem: Problem, private val stepSize: Double = 0.1, private val targetFitness: Double = 0.001) : Algorithm<T>() {
 

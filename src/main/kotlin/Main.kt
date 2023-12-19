@@ -7,8 +7,8 @@ fun main() {
 
     println("Naloga 3: ALGORITEM PSO\n")
 
-    val dimensions = 30
-    val maxFEs = 100000
+    val dimensions = 20
+    val maxFEs = 50000
     val numRuns = 50
 
     /*
@@ -50,7 +50,7 @@ fun main() {
 
 
    // for (problem in problems) {
-        val problem = Rosenbrock(dimensions, maxFEs)
+        val problem = Sphere(dimensions, maxFEs)
         println("\n\nRunning PSO for ${problem.name}...")
         val algorithm = PSO(problem)
 

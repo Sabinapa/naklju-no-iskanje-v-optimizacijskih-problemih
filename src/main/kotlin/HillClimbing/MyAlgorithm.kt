@@ -1,4 +1,4 @@
-
+package HillClimbing
 /*class MyAlgorithm(problem: Problem) : Algorithm(problem) {
 
     override fun run(maxIterations: Int): Solution? {
